@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eduardo López Martel — CV</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy: #0a1628;
+    --gold: #c9a84c;
+    --gold-light: #e8cb80;
+    --cream: #faf8f3;
+    --cream-dark: #f0ede4;
+    --text: #1a1a2e;
+    --text-muted: #5a5a72;
+    --border: #ddd8cc;
+    --white: #ffffff;
+  }
+  html { font-size: 14px; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #e2ddd5;
+    color: var(--text);
+    min-height: 100vh;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+  .topbar {
+    background: var(--navy);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 11px 32px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.35);
+  }
+  .topbar-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--white);
+    letter-spacing: 0.4px;
+  }
+  .topbar-nav { display: flex; gap: 4px; }
+  .topbar-btn {
+    background: transparent;
+    border: 0.5px solid rgba(201,168,76,0.35);
+    color: rgba(255,255,255,0.7);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10.5px;
+    font-weight: 400;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .topbar-btn:hover, .topbar-btn.active {
+    background: var(--gold);
+    color: var(--navy);
+    border-color: var(--gold);
+    font-weight: 500;
+  }
+  .topbar-print {
+    background: var(--gold);
+    border: none;
+    color: var(--navy);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10.5px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 7px 16px;
+    border-radius: 2px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: background 0.2s;
+  }
+  .topbar-print:hover { background: var(--gold-light); }
+  .page {
+    max-width: 920px;
+    margin: 32px auto 60px;
+    background: var(--white);
+    box-shadow: 0 8px 60px rgba(10,22,40,0.2), 0 2px 12px rgba(10,22,40,0.1);
+    display: grid;
+    grid-template-columns: 290px 1fr;
+    opacity: 0;
+    transform: translateY(18px);
+    animation: fadeUp 0.55s ease forwards 0.05s;
+  }
+  @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+  .sidebar {
+    background: var(--navy);
+    padding: 44px 26px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+  .avatar-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+  .avatar-ring {
+    width: 104px;
+    height: 104px;
+    border-radius: 50%;
+    padding: 3px;
+    background: conic-gradient(var(--gold) 0%, rgba(201,168,76,0.2) 60%, var(--gold) 100%);
+    flex-shrink: 0;
+    animation: spin 8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .avatar-inner {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid var(--navy);
+  }
+  .avatar-inner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    animation: unspin 8s linear infinite;
+  }
+  @keyframes unspin { to { transform: rotate(-360deg); } }
+  .name-block { text-align: center; }
+  .name {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.25;
+    letter-spacing: 0.3px;
+  }
+  .title-tag {
+    margin-top: 9px;
+    display: inline-block;
+    background: var(--gold);
+    color: var(--navy);
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 2px;
+  }
+  .sidebar-section-title {
+    font-size: 8.5px;
+    font-weight: 500;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 13px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(201,168,76,0.22);
+  }
+  .contact-list { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+  .contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 11px;
+    color: rgba(255,255,255,0.76);
+    line-height: 1.45;
+  }
+  .contact-icon {
+    width: 20px;
+    height: 20px;
+    background: rgba(201,168,76,0.13);
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+    transition: background 0.2s;
+  }
+  .contact-item:hover .contact-icon { background: rgba(201,168,76,0.28); }
+  .contact-icon svg { width: 11px; height: 11px; fill: var(--gold); }
+  .contact-item a { color: inherit; text-decoration: none; transition: color 0.2s; word-break: break-all; }
+  .contact-item a:hover { color: var(--gold-light); }
+  .skills-grid { display: flex; flex-direction: column; gap: 5px; }
+  .skill-item {
+    background: rgba(255,255,255,0.04);
+    border: 0.5px solid rgba(255,255,255,0.07);
+    border-radius: 3px;
+    padding: 7px 10px;
+    font-size: 11px;
+    color: rgba(255,255,255,0.8);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: default;
+    transition: background 0.2s, border-color 0.2s, transform 0.15s;
+  }
+  .skill-item:hover {
+    background: rgba(201,168,76,0.1);
+    border-color: rgba(201,168,76,0.25);
+    transform: translateX(3px);
+  }
+  .skill-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
+  .lang-block { display: flex; flex-direction: column; gap: 12px; }
+  .lang-row { display: flex; flex-direction: column; gap: 5px; }
+  .lang-label { display: flex; justify-content: space-between; font-size: 11px; color: rgba(255,255,255,0.78); }
+  .lang-level { color: var(--gold); font-size: 10px; }
+  .lang-bar { height: 3px; background: rgba(255,255,255,0.1); border-radius: 2px; overflow: hidden; }
+  .lang-fill {
+    height: 100%;
+    width: 0;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    border-radius: 2px;
+    transition: width 1s cubic-bezier(0.4,0,0.2,1) 0.4s;
+  }
+  .interests-row { display: flex; flex-wrap: wrap; gap: 6px; }
+  .interest-tag {
+    background: rgba(201,168,76,0.1);
+    border: 0.5px solid rgba(201,168,76,0.26);
+    color: rgba(255,255,255,0.7);
+    font-size: 10px;
+    padding: 4px 10px;
+    border-radius: 2px;
+    cursor: default;
+    transition: background 0.2s, color 0.2s;
+  }
+  .interest-tag:hover { background: rgba(201,168,76,0.22); color: var(--gold-light); }
+  .main {
+    padding: 44px 42px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+  .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
+  .section-label { font-size: 9px; font-weight: 500; letter-spacing: 2.8px; text-transform: uppercase; color: var(--gold); white-space: nowrap; }
+  .section-line { flex: 1; height: 0.5px; background: var(--border); }
+  .profile-text {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.8;
+    font-weight: 300;
+    border-left: 3px solid var(--gold);
+    padding-left: 16px;
+  }
+  .timeline { display: flex; flex-direction: column; gap: 20px; }
+  .entry {
+    display: grid;
+    grid-template-columns: 96px 1fr;
+    gap: 14px;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: opacity 0.45s ease, transform 0.45s ease;
+  }
+  .entry.visible { opacity: 1; transform: translateX(0); }
+  .entry-date { text-align: right; padding-top: 2px; }
+  .entry-date-range { font-size: 10px; color: var(--text-muted); line-height: 1.55; }
+  .entry-dot-line { display: flex; flex-direction: column; align-items: center; gap: 4px; padding-top: 5px; }
+  .entry-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--navy); border: 2px solid var(--gold);
+    flex-shrink: 0;
+    transition: transform 0.2s, background 0.2s;
+  }
+  .entry:hover .entry-dot { background: var(--gold); transform: scale(1.35); }
+  .entry-connector { width: 1px; flex: 1; background: var(--border); min-height: 20px; }
+  .entry-title { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 600; color: var(--navy); line-height: 1.3; }
+  .entry-subtitle { font-size: 11px; color: var(--gold); font-weight: 500; margin-top: 3px; }
+  .entry-location { font-size: 10.5px; color: var(--text-muted); margin-top: 2px; }
+  .entry-bullets { margin-top: 9px; list-style: none; display: flex; flex-direction: column; gap: 4px; }
+  .entry-bullets li {
+    font-size: 12px; color: var(--text-muted); line-height: 1.55;
+    padding-left: 14px; position: relative;
+  }
+  .entry-bullets li::before {
+    content: ''; position: absolute; left: 0; top: 7px;
+    width: 5px; height: 1px; background: var(--gold);
+  }
+  .badges-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+  .badge {
+    background: var(--cream-dark);
+    border: 0.5px solid var(--border);
+    color: var(--navy);
+    font-size: 11px;
+    padding: 6px 14px;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: default;
+    transition: background 0.2s, color 0.2s, transform 0.15s, border-color 0.2s;
+  }
+  .badge:hover {
+    background: var(--navy); color: var(--white);
+    border-color: var(--navy); transform: translateY(-2px);
+  }
+  .badge:hover .badge-dot { background: var(--gold-light); }
+  .badge-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--gold); transition: background 0.2s; }
+  @media print {
+    body { background: white; }
+    .topbar { display: none; }
+    .page { box-shadow: none; margin: 0; max-width: 100%; animation: none; opacity: 1; transform: none; }
+    .entry { opacity: 1 !important; transform: none !important; }
+    .lang-fill { width: var(--w) !important; transition: none !important; }
+    .avatar-ring { animation: none; }
+    .avatar-inner img { animation: none; }
+  }
+  @media (max-width: 680px) {
+    .page { grid-template-columns: 1fr; margin: 0 0 40px; }
+    .sidebar { padding: 32px 20px; }
+    .main { padding: 32px 20px; }
+    .entry { grid-template-columns: 72px 1fr; }
+    .topbar { padding: 10px 16px; }
+    .topbar-nav { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar-name">Eduardo López Martel</div>
+  <div class="topbar-nav">
+    <button class="topbar-btn active" id="btn-inicio" onclick="window.scrollTo({top:0,behavior:'smooth'})">Inicio</button>
+    <button class="topbar-btn" id="btn-exp" onclick="document.getElementById('sec-exp').scrollIntoView({behavior:'smooth'})">Experiencia</button>
+    <button class="topbar-btn" id="btn-edu" onclick="document.getElementById('sec-edu').scrollIntoView({behavior:'smooth'})">Formación</button>
+    <button class="topbar-btn" id="btn-skills" onclick="document.getElementById('sec-skills').scrollIntoView({behavior:'smooth'})">Skills</button>
+  </div>
+  <button class="topbar-print" onclick="window.print()">
+    <svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M4 2h8v3H4V2zm-2 4h12a1 1 0 011 1v4a1 1 0 01-1 1h-1v2H3v-2H2a1 1 0 01-1-1V7a1 1 0 011-1zm1 2a.5.5 0 100 1 .5.5 0 000-1zm-1 3h1v2h8v-2h1V7H3v4z"/></svg>
+    Imprimir / PDF
+  </button>
+</nav>
+
+<div class="page">
+  <aside class="sidebar">
+    <div class="avatar-wrap">
+      <div class="avatar-ring">
+        <div class="avatar-inner">
+          <img src="data:image/jpeg;base64,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" alt="Eduardo López Martel" />
+        </div>
+      </div>
+      <div class="name-block">
+        <div class="name">Eduardo<br>López Martel</div>
+        <div class="title-tag">ADE &amp; Marketing</div>
+      </div>
+    </div>
+
+    <div>
+      <div class="sidebar-section-title">Contacto</div>
+      <ul class="contact-list">
+        <li class="contact-item">
+          <div class="contact-icon"><svg viewBox="0 0 16 16"><path d="M2 4a1 1 0 011-1h10a1 1 0 011 1v8a1 1 0 01-1 1H3a1 1 0 01-1-1V4zm1.5.75L8 8.5l4.5-3.75V12h-9V4.75z"/></svg></div>
+          <a href="mailto:eduulopezz05@gmail.com">eduulopezz05@gmail.com</a>
+        </li>
+        <li class="contact-item">
+          <div class="contact-icon"><svg viewBox="0 0 16 16"><path d="M3.5 1A1.5 1.5 0 002 2.5v11A1.5 1.5 0 003.5 15h9a1.5 1.5 0 001.5-1.5v-11A1.5 1.5 0 0012.5 1h-9zm1 3h7v1h-7V4zm0 3h7v1h-7V7zm0 3h4v1h-4v-1z"/></svg></div>
+          682 169 739
+        </li>
+        <li class="contact-item">
+          <div class="contact-icon"><svg viewBox="0 0 16 16"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 01.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/></svg></div>
+          <a href="https://www.linkedin.com/in/eduardo-l%C3%B3pez-martel-8511272a6/" target="_blank">LinkedIn — Eduardo López</a>
+        </li>
+        <li class="contact-item">
+          <div class="contact-icon"><svg viewBox="0 0 16 16"><path d="M8 1a5 5 0 00-5 5c0 2.76 2.25 5.5 5 8 2.75-2.5 5-5.24 5-8a5 5 0 00-5-5zm0 7a2 2 0 110-4 2 2 0 010 4z"/></svg></div>
+          Madrid, España
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      <div class="sidebar-section-title">Competencias técnicas</div>
+      <div class="skills-grid">
+        <div class="skill-item"><div class="skill-dot"></div>Excel Avanzado</div>
+        <div class="skill-item"><div class="skill-dot"></div>Power BI</div>
+        <div class="skill-item"><div class="skill-dot"></div>Análisis Financiero</div>
+        <div class="skill-item"><div class="skill-dot"></div>Bloomberg Certified</div>
+        <div class="skill-item"><div class="skill-dot"></div>Herramientas de IA</div>
+      </div>
+    </div>
+
+    <div>
+      <div class="sidebar-section-title">Habilidades blandas</div>
+      <div class="skills-grid">
+        <div class="skill-item"><div class="skill-dot"></div>Pensamiento analítico</div>
+        <div class="skill-item"><div class="skill-dot"></div>Trabajo bajo presión</div>
+        <div class="skill-item"><div class="skill-dot"></div>Comunicación efectiva</div>
+        <div class="skill-item"><div class="skill-dot"></div>Liderazgo &amp; Teamwork</div>
+        <div class="skill-item"><div class="skill-dot"></div>Proactividad</div>
+      </div>
+    </div>
+
+    <div>
+      <div class="sidebar-section-title">Idiomas</div>
+      <div class="lang-block">
+        <div class="lang-row">
+          <div class="lang-label"><span>Español</span><span class="lang-level">Nativo</span></div>
+          <div class="lang-bar"><div class="lang-fill" id="bar-es" data-w="100%"></div></div>
+        </div>
+        <div class="lang-row">
+          <div class="lang-label"><span>Inglés</span><span class="lang-level">B2 Upper Intermediate</span></div>
+          <div class="lang-bar"><div class="lang-fill" id="bar-en" data-w="70%"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="sidebar-section-title">Intereses</div>
+      <div class="interests-row">
+        <div class="interest-tag">Fitness</div>
+        <div class="interest-tag">Fútbol</div>
+        <div class="interest-tag">Lectura</div>
+        <div class="interest-tag">Finanzas</div>
+        <div class="interest-tag">Emprendimiento</div>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <section>
+      <div class="section-header">
+        <span class="section-label">Perfil profesional</span>
+        <div class="section-line"></div>
+      </div>
+      <p class="profile-text">
+        Estudiante de ADE con mentalidad analítica, resiliente y emprendedora, comprometido con el crecimiento profesional continuo. Apasionado por el ámbito financiero y bancario, con capacidad para aplicar visión estratégica y orientación a resultados. Mi trayectoria en proyectos de inversión, liderazgo deportivo y voluntariado refleja disciplina y aptitud para el trabajo en equipo de alto rendimiento. Aspiro a incorporarme a una consultora o entidad bancaria donde pueda aportar soluciones de valor y crecer profesionalmente.
+      </p>
+    </section>
+
+    <section id="sec-exp">
+      <div class="section-header">
+        <span class="section-label">Experiencia laboral</span>
+        <div class="section-line"></div>
+      </div>
+      <div class="timeline">
+        <div class="entry">
+          <div class="entry-date"><div class="entry-date-range">Sep 2023<br>Actualidad</div></div>
+          <div style="display:flex;gap:14px;flex:1;">
+            <div class="entry-dot-line"><div class="entry-dot"></div><div class="entry-connector"></div></div>
+            <div class="entry-body" style="flex:1;">
+              <div class="entry-title">Asesor de Ventas y Atención al Cliente</div>
+              <div class="entry-subtitle">Boston Wear</div>
+              <div class="entry-location">Madrid</div>
+              <ul class="entry-bullets">
+                <li>Atención personalizada y gestión integral del proceso de ventas.</li>
+                <li>Organización de stock, manejo de caja y control de inventario.</li>
+                <li>Desarrollo de habilidades comunicativas, orientación al cliente y trabajo en equipo.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="entry">
+          <div class="entry-date"><div class="entry-date-range">2022</div></div>
+          <div style="display:flex;gap:14px;flex:1;">
+            <div class="entry-dot-line"><div class="entry-dot"></div></div>
+            <div class="entry-body" style="flex:1;">
+              <div class="entry-title">Voluntario</div>
+              <div class="entry-subtitle">Hospital San Juan de Dios</div>
+              <div class="entry-location">Madrid</div>
+              <ul class="entry-bullets">
+                <li>Acompañamiento a pacientes y colaboración en actividades solidarias.</li>
+                <li>Refuerzo de valores de empatía, compromiso y responsabilidad social.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="sec-edu">
+      <div class="section-header">
+        <span class="section-label">Formación académica</span>
+        <div class="section-line"></div>
+      </div>
+      <div class="timeline">
+        <div class="entry">
+          <div class="entry-date"><div class="entry-date-range">2022<br>2026 (prev.)</div></div>
+          <div style="display:flex;gap:14px;flex:1;">
+            <div class="entry-dot-line"><div class="entry-dot"></div><div class="entry-connector"></div></div>
+            <div class="entry-body" style="flex:1;">
+              <div class="entry-title">Grado en ADE y Marketing</div>
+              <div class="entry-subtitle">Universidad Alfonso Décimo el Sabio (UAX)</div>
+              <div class="entry-location">Madrid — En curso</div>
+            </div>
+          </div>
+        </div>
+        <div class="entry">
+          <div class="entry-date"><div class="entry-date-range">2026</div></div>
+          <div style="display:flex;gap:14px;flex:1;">
+            <div class="entry-dot-line"><div class="entry-dot"></div><div class="entry-connector"></div></div>
+            <div class="entry-body" style="flex:1;">
+              <div class="entry-title">Certificación Bloomberg</div>
+              <div class="entry-subtitle">Bloomberg L.P.</div>
+              <div class="entry-location">Análisis financiero y mercados de capitales</div>
+            </div>
+          </div>
+        </div>
+        <div class="entry">
+          <div class="entry-date"><div class="entry-date-range">2024–2026</div></div>
+          <div style="display:flex;gap:14px;flex:1;">
+            <div class="entry-dot-line"><div class="entry-dot"></div></div>
+            <div class="entry-body" style="flex:1;">
+              <div class="entry-title">Cursos Coursera — UAX Skill School</div>
+              <div class="entry-subtitle">Coursera by UAX</div>
+              <div class="entry-location">Formación en competencias digitales y empresariales</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="sec-skills">
+      <div class="section-header">
+        <span class="section-label">Herramientas &amp; Tecnologías</span>
+        <div class="section-line"></div>
+      </div>
+      <div class="badges-grid">
+        <div class="badge"><div class="badge-dot"></div>Microsoft Excel</div>
+        <div class="badge"><div class="badge-dot"></div>Power BI</div>
+        <div class="badge"><div class="badge-dot"></div>Bloomberg Terminal</div>
+        <div class="badge"><div class="badge-dot"></div>Herramientas IA</div>
+        <div class="badge"><div class="badge-dot"></div>Microsoft Office Suite</div>
+        <div class="badge"><div class="badge-dot"></div>Análisis de Datos</div>
+        <div class="badge"><div class="badge-dot"></div>Gestión Financiera</div>
+        <div class="badge"><div class="badge-dot"></div>CRM &amp; Atención al Cliente</div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script>
+  const entries = document.querySelectorAll('.entry');
+  const obs = new IntersectionObserver(list => {
+    list.forEach((item, i) => {
+      if (item.isIntersecting) {
+        setTimeout(() => item.target.classList.add('visible'), i * 90);
+        obs.unobserve(item.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  entries.forEach(e => obs.observe(e));
+
+  const bars = document.querySelectorAll('.lang-fill');
+  const barObs = new IntersectionObserver(list => {
+    list.forEach(item => {
+      if (item.isIntersecting) {
+        item.target.style.width = item.target.dataset.w;
+        barObs.unobserve(item.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  bars.forEach(b => barObs.observe(b));
+
+  const secIds = ['sec-exp','sec-edu','sec-skills'];
+  const btns = [document.getElementById('btn-inicio'), document.getElementById('btn-exp'), document.getElementById('btn-edu'), document.getElementById('btn-skills')];
+  window.addEventListener('scroll', () => {
+    let active = 0;
+    secIds.forEach((id, i) => {
+      const el = document.getElementById(id);
+      if (el && el.getBoundingClientRect().top < 140) active = i + 1;
+    });
+    btns.forEach((b, i) => b.classList.toggle('active', i === active));
+  });
+</script>
+</body>
+</html>
